@@ -230,6 +230,62 @@
     .whatsapp-btn svg {
       width:24px;height:24px;display:inline;
     }
+    /* --- Modal (Popup) stylish & mobile friendly --- */
+    .modal-bg {
+      position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(30,40,70,0.24); display: none;
+      align-items: center; justify-content: center; z-index: 200;
+      backdrop-filter: blur(1.5px);
+      transition: background .2s;
+    }
+    .modal-form {
+      background: linear-gradient(102deg,#fff 85%,#ebf2ff 100%);
+      box-shadow: 0 6px 34px #15308522;
+      border-radius: 19px;
+      padding: 27px 20px 22px 20px;
+      width: 92vw; max-width: 350px;
+      min-width: 0;
+      display: flex; flex-direction: column; align-items: center;
+      position: relative;
+      animation: popFade 0.23s cubic-bezier(.33,1.11,.53,.92);
+    }
+    @keyframes popFade {
+      from { opacity: 0; transform: scale(.92) translateY(30px);}
+      to   { opacity: 1; transform: scale(1) translateY(0);}
+    }
+    .modal-close {
+      position: absolute; right: 12px; top: 10px;
+      border: none; background: none; font-size: 1.7rem; color: #48568b;
+      cursor: pointer; font-weight: bold; line-height: 1;
+      transition: color .18s;
+    }
+    .modal-close:hover { color: #e86366; }
+    .modal-form h2 {
+      font-family: 'Montserrat',Arial,sans-serif; margin: 0 0 9px 0;
+      color:#1840b1;font-size:1.22em;font-weight:700;text-align:center;
+    }
+    .form-row {
+      display: flex; flex-direction: column; margin-bottom: 10px; width: 100%;
+    }
+    .form-row label {
+      margin-bottom: 3px; font-size: 0.98em; font-weight: 600; color: #1840b1;
+      font-family: 'Montserrat',Arial,sans-serif;
+    }
+    .form-row input {
+      padding: 8px 11px; border: 1.1px solid #bfd7f7; border-radius: 7px;
+      font-size: 1em; font-family: 'Inter',Arial,sans-serif; outline: none;
+      margin-bottom: 1px; background: #f7faff; transition: border-color .15s;
+    }
+    .form-row input:focus { border-color: #2563eb; background: #f1f6ff;}
+    .submit-btn {
+      width: 100%; background: linear-gradient(94deg, #1840b1, #2563eb 80%);
+      color: #fff; border-radius: 7px; border: none; font-weight: 700;
+      font-size: 1.08rem; padding: 10px 0; margin-top: 7px;
+      box-shadow: 0 2px 10px #2563eb17; cursor: pointer;
+      font-family: 'Montserrat',Arial,sans-serif; letter-spacing: 0.10em;
+      transition: background .19s,box-shadow .09s,transform .12s;
+    }
+    .submit-btn:hover { background: linear-gradient(90deg,#1840b1 37%,#3ba2ff 100%); box-shadow: 0 2px 14px #1840b123; }
     @media (max-width:630px) {
       .cards {flex-direction:column;align-items:center;}
       .hero {padding-top:21px;}
@@ -242,6 +298,10 @@
       .btn {font-size:.91rem;padding:7px 7vw;}
       .cta {font-size:0.9rem;max-width:99vw;}
       .certified-bar {font-size:0.93rem;padding:7px 2vw 5px 2vw;}
+    }
+    @media (max-width: 430px) {
+      .modal-form { padding: 20px 7px 15px 7px; max-width:99vw;}
+      .modal-form h2 { font-size:1.03em;}
     }
   </style>
 </head>
@@ -332,14 +392,14 @@
 <a href="https://wa.me/919503107592?text=Hi%20I%20want%20financial%20guidance" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
   <svg class="wa-svg" viewBox="0 0 32 32" width="32" height="32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <circle cx="16" cy="16" r="16" fill="#25D366"/>
-    <g fill="#fff"><path d="M22.6 18.7c-.2-.1-1.2-.6-1.3-.7s-.3-.1-.5.1c-.1.1-.5.7-.7.9-.1.1-.2.2-.4.1-.2-.1-.9-.4-1.7-1.2-.6-.6-1-1.3-1.1-1.5-.1-.1 0-.2.1-.3.1-.1.2-.2.3-.4.1-.1.1-.2.2-.4.1-.2 0-.3 0-.4-.1-.1-.5-1.1-.7-1.5-.2-.4-.4-.3-.6-.3h-.4c-.1 0-.4.1-.6.3-.2.2-.8.7-.8 1.7s.8 1.9.9 2.1c.2.2 1.5 2.4 3.7 3.2.5.2.9.3 1.2.4.5.2.9.1 1.2.1.4-.1 1.2-.5 1.4-1 .2-.4.2-.9.1-1 0 0-.2-.1-.4-.2z"/></g>
+    <g fill="#fff"><path d="M22.6 18.7c-.2-.1-1.2-.6-1.3-.7s-.3-.1-.5.1c-.1.1-.5.7-.7.9-.1.1-.2.2-.4.1-.2-.1-.9-.4-1.7-1.2-.6-.6-1-1.3-1.1-1.5-.1-.1 0-.2.1-.3.1-.1.2-.2.3-.4.1-.1.1-.2.2-.4.1-.2 0-.3 0[...]</g>
   </svg>
 </a>
 
-<!-- Modal Form (hidden by default) -->
-<div class="modal-bg" id="modalBg" style="display:none;">
-  <form class="modal-form" id="contactForm" autocomplete="off" onsubmit="return sendToWhatsApp()">
-    <button type="button" class="modal-close" onclick="closeForm()">&times;</button>
+<!-- Modal Form (hidden by default, stylish & responsive) -->
+<div class="modal-bg" id="modalBg" tabindex="-1">
+  <form class="modal-form" id="contactForm" autocomplete="off" onsubmit="return sendToWhatsApp(event)">
+    <button type="button" class="modal-close" onclick="closeForm()" title="Close Modal">&times;</button>
     <h2>Discuss with Expert</h2>
     <div class="form-row">
       <label for="name">Full Name*</label>
@@ -359,41 +419,56 @@
     </div>
     <div class="form-row">
       <label for="contact">Contact Number*</label>
-      <input type="tel" id="contact" placeholder="10-digit mobile" pattern="[0-9]{10}" required maxlength="10"/>
+      <input type="tel" id="contact" placeholder="10-digit mobile" pattern="[6-9]{1}[0-9]{9}" required maxlength="10"/>
     </div>
     <button class="submit-btn" type="submit">Submit & WhatsApp</button>
   </form>
 </div>
 
 <script>
-  // Modal
-  function openForm() { document.getElementById('modalBg').style.display='flex'; }
-  function closeForm() { document.getElementById('modalBg').style.display='none'; }
+  // Modal functions
+  function openForm() {
+    const modal = document.getElementById('modalBg');
+    modal.style.display = 'flex';
+    setTimeout(()=>{try{document.getElementById('name').focus();}catch{}},120);
+    // Trap focus for accessibility
+    modal.tabIndex = -1; modal.focus();
+    document.body.style.overflow = "hidden";
+  }
+  function closeForm() {
+    document.getElementById('modalBg').style.display = 'none';
+    document.body.style.overflow = "";
+  }
   document.getElementById('openFormBtn').onclick = openForm;
   document.getElementById('openFormBtn2').onclick = openForm;
   document.getElementById('modalBg').onclick = function(e) {
     if (e.target === this) closeForm();
   };
 
-  // Send WhatsApp with form details
-  function sendToWhatsApp() {
+  // WhatsApp handler on form submit
+  function sendToWhatsApp(e) {
+    e.preventDefault();
     var name = document.getElementById('name').value.trim();
     var age = document.getElementById('age').value.trim();
     var occ = document.getElementById('occupation').value.trim();
     var inc = document.getElementById('income').value.trim();
     var phone = document.getElementById('contact').value.trim();
+
+    // Mobile number validation (Indian)
     if (!/^[6-9][0-9]{9}$/.test(phone)) {
-      alert('Enter valid 10-digit Indian mobile number.');
+      alert('Enter valid 10-digit Indian mobile number (starts with 6-9).');
+      document.getElementById('contact').focus();
       return false;
     }
-    var msg = `Hi, I want financial guidance.\nName: ${name}\nAge: ${age}\nOccupation: ${occ}\nMonthly Income: ₹${inc}\nContact: ${phone}`;
-    var link = `https://wa.me/919503107592?text=${encodeURIComponent(msg)}`;
+
+    var msg = `Hi, I want financial guidance.%0aName: ${name}%0aAge: ${age}%0aOccupation: ${occ}%0aMonthly Income: ₹${inc}%0aContact: ${phone}`;
+    var link = `https://wa.me/919503107592?text=${msg}`;
     window.open(link, '_blank');
     closeForm();
     return false;
   }
 
-  // Reviews slider
+  // Review slider and Escape close as before...
   var sliderIndex = 0;
   var totalSlides = document.getElementById('slides').children.length;
   var reviewDots = document.querySelectorAll('.dot');
@@ -404,10 +479,10 @@
     reviewDots.forEach((d,i)=>d.classList[i===sliderIndex?'add':'remove']('active'));
   }
   reviewDots.forEach(function(dot,i){dot.onclick=function(){showSlide(i);};});
-  setInterval(()=>showSlide(sliderIndex+1),3500);
+  setInterval(()=>showSlide(sliderIndex+1),3300);
 
-  // Close modal on Escape
+  // Close modal on Escape key
   document.addEventListener('keydown',function(e){if(e.key==="Escape")closeForm();});
 </script>
 </body>
-</html>
+    </html>
