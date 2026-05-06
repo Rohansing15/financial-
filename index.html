@@ -6,19 +6,287 @@
   <title>Smart Financial Guidance</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --blue-main: #2153d7;
+      --blue-grad: linear-gradient(90deg, #3772ff 0%, #2980f2 70%);
+      --primary-grad: linear-gradient(110deg, #2153d7 2%, #dde9fa 100%);
+      --accent-yellow: #ffe866;
+      --accent-orange: #ffc798;
+      --card-bg: #fafeff;
+      --section-bg: #f5f7fa;
+      --box-shadow1: 0 4px 20px #19387f22;
+      --box-shadow2: 0 2px 12px #19386b18;
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', 'Montserrat', Arial, sans-serif;
-      background: linear-gradient(120deg, #eef2f9 0%, #f8fafc 100%);
+      background: var(--section-bg);
       color: #19202b;
+      min-height: 100vh;
     }
-    /* ... existing styles ... */
+    nav {
+      background: #fff;
+      box-shadow: var(--box-shadow2);
+      padding: 12px 5vw 10px 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    nav h1 {
+      margin: 0; color: var(--blue-main);
+      font-family: 'Montserrat', Arial,sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: .01em;
+      display: flex; align-items: center;
+    }
+    nav .nav-contact {
+      font-size: 1rem; color: #fff; background: var(--blue-main);
+      padding: 8px 15px; border-radius: 22px; font-weight: 600;
+      box-shadow: 0 2px 12px #2153d71b;
+      text-decoration: none; transition: background .2s;
+    }
+    nav .nav-contact:hover { background: #1840b1; }
 
-    /* --- Modal (Popup) stylish & mobile friendly --- */
+    .certified-bar,
+    .offer {
+      text-align: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1rem;
+      letter-spacing: .01em;
+      margin: 0; padding: 8px 0;
+      width: 100vw;
+      position: relative; z-index: 1;
+    }
+    .certified-bar {
+      background: var(--blue-grad);
+      color: #fff;
+      font-weight: 500;
+      box-shadow: 0 2px 10px #19386b10
+    }
+    .offer {
+      background: var(--accent-yellow);
+      font-weight: bold; color: #1a292d;
+      box-shadow: 0 2px 14px #f9cb3310;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero {
+      background: var(--blue-grad);
+      color: #fff;
+      padding: 61px 10vw 68px 10vw;
+      text-align: center;
+      border-radius: 0 0 44px 44px / 0 0 38px 38px;
+      position: relative;
+      box-shadow: var(--box-shadow1);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: .01em;
+      margin: 0;
+      line-height: 1.18;
+      background: linear-gradient(90deg,#ffe866 34%, #fff8 80%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero h1 span {
+      color: #fff;
+      background: none;
+      -webkit-text-fill-color: #fff;
+    }
+    .hero p {
+      font-weight: 500;
+      font-size: 1.2rem;
+      margin: 23px 0 29px 0;
+      color: #fff9;
+      letter-spacing: 0.01em;
+    }
+    .btn {
+      background: #fff;
+      color: var(--blue-main);
+      font-family: 'Montserrat',Arial,sans-serif;
+      font-weight: 700;
+      padding: 15px 35px;
+      border-radius: 30px;
+      border: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 14px #15308522;
+      letter-spacing: .06em;
+      cursor: pointer;
+      transition: background .16s, color .16s, transform .09s;
+    }
+    .btn:hover {
+      background: #1851c6;
+      color: #fff;
+      transform: translateY(-2px) scale(1.028);
+    }
+
+    .section {
+      padding: 43px 7vw 21px 7vw;
+      background: var(--section-bg);
+    }
+    .section h2 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 2rem; color: var(--blue-main);
+      text-align: center; margin-top: 0;
+      margin-bottom: 30px;
+      letter-spacing: 0.018em;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(244px, 1fr));
+      gap: 28px;
+      max-width: 950px;
+      margin: 0 auto;
+      justify-items: center;
+    }
+    .card {
+      background: var(--card-bg);
+      box-shadow: 0 2px 15px #1e4bb211;
+      border-radius: 18px;
+      padding: 24px 17px;
+      min-width: 220px;
+      transition: box-shadow .17s, transform .12s;
+      border: 1.1px solid #e3edff;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .card:hover {
+      box-shadow: 0 7px 24px #2153d73a;
+      transform: translateY(-4px) scale(1.021);
+      border-color: #d2e5ff;
+    }
+    .card h3 {
+      color: var(--blue-main);
+      font-weight: 700;
+      font-family: 'Montserrat',Arial,sans-serif;
+      letter-spacing: 0.04em;
+      font-size: 1.19rem;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    .card p {
+      color: #334066;
+      font-size: 1.02rem;
+      margin: 0; font-weight: 500; line-height: 1.54;
+    }
+
+    .example {
+      background: linear-gradient(90deg,#ffe866 7%, #feca8a 100%);
+      border-radius: 19px; box-shadow: 0 2px 16px #ffa60022;
+      padding: 28px 10vw 26px 10vw;
+      text-align: center;
+      margin: 24px auto 0;
+      max-width: 400px;
+      font-family: 'Montserrat', Arial,sans-serif;
+      font-weight: 600;
+    }
+    .example p {
+      color: #6a3907;
+      margin: 0 0 10px 0;
+      font-size: 1.06em;
+    }
+    .example h3 {
+      color: #e04c1d;
+      margin: 0 0 8px 0;
+      font-size: 2.13em;
+      letter-spacing: 0.021em;
+    }
+
+    .slider {
+      background: #fff;
+      border-radius: 18px;
+      padding: 24px 20px;
+      max-width: 560px;
+      margin: 0 auto 13px auto;
+      box-shadow: 0 2.5px 23px #1e4bb233;
+      overflow: hidden;
+    }
+    .slides {
+      display: flex;
+      flex-direction: row;
+      gap: 0;
+      transition: transform .57s cubic-bezier(.37,1.01,.46,.97);
+      will-change: transform;
+    }
+    .slide {
+      min-width: 100%;
+      transition: opacity .27s;
+      opacity: 0.96;
+      padding-bottom: 13px;
+    }
+    .review-name {
+      font-family: 'Montserrat',Arial,sans-serif;
+      font-weight: 700; color: var(--blue-main);
+      font-size: 1em;
+      margin-bottom: 7px;
+    }
+    .slide p {
+      margin: 0; font-weight: 500; font-size: 1.09em; color: #23263a;
+    }
+    .review-dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-bottom: 22px;
+    }
+    .dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #ddd; cursor: pointer; transition: background .19s;
+      display: inline-block;
+    }
+    .dot.active, .dot:hover { background: var(--blue-main); }
+
+    .cta {
+      background: linear-gradient(100deg,#ebf3ff 77%,#d5edfb 100%);
+      border-radius: 22px;
+      text-align: center;
+      padding: 47px 10vw 47px 10vw;
+      margin: 39px 7vw 23px 7vw;
+      box-shadow: 0 2.5px 24px #1e4bb21a;
+      max-width: 900px;
+      margin-left: auto; margin-right: auto;
+      position: relative;
+    }
+    .cta h2 {
+      color: #1840b1;
+      margin-bottom: 15px;
+    }
+    .cta p {
+      color: #23313c;
+      font-size: 1.14em;
+      font-weight: 500;
+      letter-spacing: 0.012em;
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 22px;
+      z-index: 210;
+      background: #25D366;
+      border-radius: 50%;
+      width: 61px; height: 61px;
+      box-shadow: 0 3px 14px #11be5022, 0 1px 4px #025e189f;
+      display: flex; align-items: center; justify-content: center;
+      border: none; cursor: pointer;
+      transition: box-shadow .2s, background .13s;
+    }
+    .whatsapp-btn:hover {
+      background: #128c4c;
+      box-shadow: 0 1.5px 21px #11be5063;
+    }
+    .wa-svg {
+      width: 33px; height: 33px;
+    }
+
+    /* Modal stylish & mobile friendly (use your existing modal section) */
     .modal-bg {
       position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
       background: rgba(30,40,70,0.24); display: none;
-      align-items: center; justify-content: center; z-index: 200;
+      align-items: center; justify-content: center; z-index: 999;
       backdrop-filter: blur(1.5px);
       transition: background .2s;
     }
@@ -71,17 +339,31 @@
       gap: 8px;
     }
     .wa-btn:hover { background: #128c4c; }
+    @media (max-width: 660px) {
+      .hero { padding: 41px 4vw 39px 4vw; }
+      .section { padding: 29px 2vw 17px 2vw;}
+      .cta { padding: 29px 3vw 29px 3vw; margin: 20px 2vw 15px 2vw; border-radius: 18px;}
+      nav { padding: 8px 3vw;}
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.47rem;}
+      .btn { font-size: 1rem; padding: 12px 16px;}
+      .section h2, .cta h2 { font-size: 1.07em;}
+      .cards { grid-template-columns: 1fr; gap: 16px;}
+    }
     @media (max-width: 430px) {
       .modal-form { padding: 20px 7px 15px 7px; max-width:99vw;}
       .modal-form h2 { font-size:1.03em;}
+      .example { padding: 17px 1.5vw; font-size: 0.97em;}
     }
   </style>
 </head>
 <body>
 
-<!-- ... the rest of your page content ... -->
-
-<nav><h1>Smart Financial Guidance</h1></nav>
+<nav>
+  <h1>Smart Financial Guidance</h1>
+  <a href="https://wa.me/919503107592?text=Hi%20I%20want%20financial%20guidance" class="nav-contact" target="_blank">WhatsApp Expert</a>
+</nav>
 <div class="certified-bar">
   We are <b>Certified Professional Financial Advisor</b> — SEBI Registered | AMFI Registered Mutual Fund Distributor | NISM Certified
 </div>
@@ -118,7 +400,7 @@
 <section class="section">
   <h2>Example Growth</h2>
   <div class="example">
-    <p>₹7,500/month | 15 Years | 12% annual return</p>
+    <p>₹7,500/month &nbsp;|&nbsp; 15 Years &nbsp;|&nbsp; 12% annual return</p>
     <h3>₹38+ Lakhs</h3>
     <p style="font-size:0.96em;color:#48556b;">That's the power of steady investing!</p>
   </div>
@@ -147,10 +429,10 @@
     </div>
   </div>
   <div class="review-dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
+    <span class="dot active" onclick="showSlide(0)"></span>
+    <span class="dot" onclick="showSlide(1)"></span>
+    <span class="dot" onclick="showSlide(2)"></span>
+    <span class="dot" onclick="showSlide(3)"></span>
   </div>
 </section>
 
@@ -165,8 +447,8 @@
 <a href="https://wa.me/919503107592?text=Hi%20I%20want%20financial%20guidance" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
   <svg class="wa-svg" viewBox="0 0 32 32" width="32" height="32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <circle cx="16" cy="16" r="16" fill="#25D366"/>
-    <g fill="#fff"><path d="M22.6 18.7c-.2-.1-1.2-.6-1.3-.7s-.3-.1-.5.1c-.1.1-.5.7-.7.9-.1.1-.2.2-.4.1-.2-.1-.9-.4-1.7-1.2-.6-.6-1-1.3-1.1-1.5-.1-.1 0-.2.1-.3.1-.1.2-.2.3-.4.1-.1.1-.2.2-.4.1-.2 0-.3-.1-.4s-1.1-2.5-1.5-3.3c-.4-.8-.8-.2-1-.1-.2.1-.4.2-.6.4-.2.2-.5.4-.1 1.2.3.7 1 2.3 2.2 3.7s2.9 2.5 3.3 2.8c.4.3.8.2 1.2.1.4-.1 1.2-.5 1.4-1.1.2-.5.2-1 .1-1.1z"></path><path d="M16 6c-5.5 0-10 4.5-10 10 0 1.7.4 3.3 1.1 4.7l-1.2 4.5 4.6-1.2C12.6 25.2 14.3 26 16 26c5.5 0 10-4.5 10-10S21.5 6 16 6zm4.7 14.2c-.2.8-1.1 1.5-1.8 1.7-.5.1-1.3.2-2.2-.2C14 21.2 11.2 19 9.8 16.7c-1.1-2-1-3.7-.7-4.3.3-.6.8-1 .9-1.1.4-.3.9-.5 1.1-.5.1 0 .2 0 .3.1.1.1.3.4.4.7.2.5.5 1.2.6 1.4.1.2.1.3 0 .5-.1.1-.2.2-.3.3-.2.2-.4.4 0 1 .3.5.6 1.1 1.2 1.7.5.6 1.1.9 1.6 1.2.6.3.7.2.8.1.1-.1.3-.4.4-.5s.2-.1.3-.1c.1 0 .5.1 1.1.3.5.2 1 .4 1.1.6.2.2.2 1.1 0 1.9z"/></g></svg>
-  Send via WhatsApp
+    <g fill="#fff"><path d="M22.6 18.7c-.2-.1-1.2-.6-1.3-.7s-.3-.1-.5.1c-.1.1-.5.7-.7.9-.1.1-.2.2-.4.1-.2-.1-.9-.4-1.7-1.2-.6-.6-1-1.3-1.1-1.5-.1-.1 0-.2.1-.3.1-.1.2-.2.3-.4.1-.1.1-.2.2-.4.1-.2 0 0 0-.3s-.5-1.2-.7-1.7c-.2-.6-.4-.5-.5-.5-.1 0-.2 0-.4 0s-.3 0-.4.1c-.1.1-.4.2-.4.5s.1.5.1.8c0 .3-.1.7-.2.8s-.2.2-.3.2c-.1 0-.4-.2-.9-.7s-1.2-1.1-1.2-1.7c0-.7.3-1.3.6-1.7.2-.3.3-.5.6-.6.3-.2.7-.3 1.1-.1.2.1.5.3.7.7.1.3.3.8.4 1 0 .1.1.2.1.3.1.2.1.4.2.5s.1.2.2.2.2-.1.3-.2c.1-.2.7-.9.9-1.2.2-.2.4-.3.7-.2.3.1 1.1.4 1.3.5.1.1.2.2.3.3s.1.2 0 .3c-.1.1-.3.3-.4.4z"/></g>
+  </svg>
 </a>
 
 <!-- WhatsApp Form Modal (mobile-friendly popup) -->
@@ -195,7 +477,7 @@
       <input type="tel" id="contact" placeholder="10-digit mobile" pattern="[6-9]{1}[0-9]{9}" required maxlength="10"/>
     </div>
     <button class="wa-btn" type="submit">
-      <svg style="width:1.35em;height:1.35em;" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><g fill="#fff"><path d="M22.6 18.7c-.2-.1-1.2-.6-1.3-.7s-.3-.1-.5.1c-.1.1-.5.7-.7.9-.1.1-.2.2-.4.1-.2-.1-.9-.4-1.7-1.2-.6-.6-1-1.3-1.1-1.5-.1-.1 0-.2.1-.3.1-.1.2-.2.3-.4.1-.1.1-.2.2-.4.1-.2 0-.3-.1-.4s-1.1-2.5-1.5-3.3c-.4-.8-.8-.2-1-.1-.2.1-.4.2-.6.4-.2.2-.5.4-.1 1.2.3.7 1 2.3 2.2 3.7s2.9 2.5 3.3 2.8c.4.3.8.2 1.2.1.4-.1 1.2-.5 1.4-1.1.2-.5.2-1 .1-1.1z"></path><path d="M16 6c-5.5 0-10 4.5-10 10 0 1.7.4 3.3 1.1 4.7l-1.2 4.5 4.6-1.2C12.6 25.2 14.3 26 16 26c5.5 0 10-4.5 10-10S21.5 6 16 6zm4.7 14.2c-.2.8-1.1 1.5-1.8 1.7-.5.1-1.3.2-2.2-.2C14 21.2 11.2 19 9.8 16.7c-1.1-2-1-3.7-.7-4.3.3-.6.8-1 .9-1.1.4-.3.9-.5 1.1-.5.1 0 .2 0 .3.1.1.1.3.4.4.7.2.5.5 1.2.6 1.4.1.2.1.3 0 .5-.1.1-.2.2-.3.3-.2.2-.4.4 0 1 .3.5.6 1.1 1.2 1.7.5.6 1.1.9 1.6 1.2.6.3.7.2.8.1.1-.1.3-.4.4-.5s.2-.1.3-.1c.1 0 .5.1 1.1.3.5.2 1 .4 1.1.6.2.2.2 1.1 0 1.9z"/></g></svg>
+      <svg style="width:1.35em;height:1.35em;" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><g fill="#fff"><path d="M22.6 18.7c-.2-.1-1.2-.6-1.3-.7s-.3-.1-.5.1c-.1.1-.5.7-.7..."/></g></svg>
       Send via WhatsApp
     </button>
   </form>
@@ -229,14 +511,11 @@
     var occ = document.getElementById('occupation').value.trim();
     var inc = document.getElementById('income').value.trim();
     var phone = document.getElementById('contact').value.trim();
-
-    // Mobile number validation (Indian)
     if (!/^[6-9][0-9]{9}$/.test(phone)) {
       alert('Enter valid 10-digit Indian mobile number (starts with 6-9).');
       document.getElementById('contact').focus();
       return false;
     }
-
     var msg = `Hi, I want financial guidance.%0aName: ${name}%0aAge: ${age}%0aOccupation: ${occ}%0aMonthly Income: ₹${inc}%0aContact: ${phone}`;
     var link = `https://wa.me/919503107592?text=${msg}`;
     window.open(link, '_blank');
@@ -244,8 +523,27 @@
     return false;
   }
 
-  // Close modal on Escape key
   document.addEventListener('keydown',function(e){if(e.key==="Escape")closeForm();});
+
+  // Review slider script
+  let currSlide = 0;
+  const allSlides = document.querySelectorAll('#slides .slide');
+  const slideContainer = document.querySelector('#slides');
+  const dots = document.querySelectorAll('.dot');
+  function showSlide(idx) {
+    currSlide = idx;
+    slideContainer.style.transform = `translateX(-${idx*100}%)`;
+    dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+  }
+  // Auto-slide every 6 seconds
+  setInterval(()=>{
+    currSlide = (currSlide+1)%allSlides.length;
+    showSlide(currSlide);
+  }, 6000);
+  // Dot click events
+  dots.forEach((d,i)=>d.onclick=()=>showSlide(i));
+  // Start at first
+  showSlide(0);
 </script>
 </body>
 </html>
