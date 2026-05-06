@@ -140,7 +140,7 @@
     .card p {color:#48556b; font-size:1.04rem;}
     .example {
       background:linear-gradient(90deg,#eef2ff 40%,#e0ecfb 100%);
-      padding:18px; 
+      padding:18px;
       margin:15px auto 9px auto;
       border-radius:9px;
       display:inline-block;
@@ -200,7 +200,7 @@
     .modal-form {
       background:white;border-radius:21px;padding:34px 19px 19px 19px;
       box-shadow:0 14px 48px #07347925;
-      min-width:250px;max-width:95vw;width:355px;
+      min-width:210px;max-width:95vw;width:330px;
       position:relative; font-size:1.09rem;
       border:1.9px solid #d4dcee;
       animation:bounce-in .16s;
@@ -238,7 +238,7 @@
       box-shadow:0 7px 28px #2563eb17;
     }
     .submit-btn:hover {background:linear-gradient(90deg,#17a2b8 60%,#225cea);box-shadow:0 2px 32px #225cea33;}
-    /* Floating WhatsApp */
+    /* Floating WhatsApp and Call */
     .whatsapp, .call {
       position:fixed;bottom:19px;
       z-index:50;
@@ -269,6 +269,34 @@
       .section {padding-top:18px;}
       .cta {padding:22px 3vw;}
       .card {width:97vw;max-width:320px;}
+    }
+    /* Responsive Fixes for Floating Buttons and Modal on Mobile */
+    @media (max-width:540px) {
+      .call { 
+        right: 19px; 
+        bottom: 68px;
+      }
+      .whatsapp {
+        right: 19px;
+        bottom: 19px;
+      }
+      .modal-form {
+        width: 98vw;
+        min-width: 0;
+        max-width: 98vw;
+        padding: 20px 8px 14px 8px;
+        font-size: 0.99rem;
+      }
+      .form-row input {
+        font-size: 14px;
+        padding: 7px 4px;
+      }
+      .submit-btn {font-size:1.01rem; padding: 10px 0;}
+      .modal-form h2 {font-size:1.03rem;}
+      .btn, .cta .btn {
+        font-size: 0.97rem;
+        padding: 10px 16px;
+      }
     }
   </style>
 </head>
@@ -320,24 +348,24 @@
   <div class="slider">
     <div class="slides" id="slides">
       <div class="slide">
-        <img src="https://randomuser.me/api/portraits/men/38.jpg" alt="">
+        <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?h=200&w=200&fit=crop" alt="Indian man smiling">
         <p>"My personal loan was a big headache! With their advice, I cleared it in 11 months. No upselling or complex words—simple & practical Indian approach."</p>
         <strong>- Abhishek S. (Pune, IT Professional)</strong>
       </div>
       <div class="slide">
-        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="">
+        <img src="https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?h=200&w=200&fit=crop" alt="Indian woman smiling">
         <p>"I always struggled to save. The monthly expense plan worked for me—now investments are automatic and tax has reduced too."</p>
         <strong>- Anita J. (Nashik, School Teacher)</strong>
       </div>
       <div class="slide">
-        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="">
+        <img src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?h=200&w=200&fit=crop" alt="South Indian man">
         <p>"Unlike banks, they explain insurance in a way families understand. Got term plan & daughter's education SIP—totally satisfied."</p>
         <strong>- Manish Kumar (Hyderabad, Small Business Owner)</strong>
       </div>
       <div class="slide">
-        <img src="https://randomuser.me/api/portraits/women/61.jpg" alt="">
+        <img src="https://images.pexels.com/photos/1429480/pexels-photo-1429480.jpeg?h=200&w=200&fit=crop" alt="South Indian woman">
         <p>"Highly recommended! You can directly WhatsApp them, no waiting time. Honest advice."</p>
-        <strong>- Priya Desai (Aurangabad, Chartered Accountant)</strong>
+        <strong>- Priya Desai (Chennai, Chartered Accountant)</strong>
       </div>
     </div>
   </div>
